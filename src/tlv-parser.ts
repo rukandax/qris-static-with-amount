@@ -2,8 +2,13 @@ import { QRIS_CONSTRAINTS, QRIS_TAGS } from './constants';
 import { TlvParseResult, TlvElement, CrcStripResult } from './types';
 
 /**
- * Parses TLV (Tag-Length-Value) structure from QRIS string
- * Format: TAG (2 chars) + LENGTH (2 decimal digits) + VALUE (LENGTH chars)
+ * Parses TLV (Tag-Length-Value) structure from QRIS string.
+ *
+ * @param qr - QRIS string to parse
+ * @returns Parse result with elements array or error reason
+ *
+ * @remarks
+ * TLV format: TAG (2 chars) + LENGTH (2 digits) + VALUE (LENGTH chars)
  */
 export function parseTlvStructure(qr: string): TlvParseResult {
   const elements: TlvElement[] = [];
@@ -71,8 +76,10 @@ export function parseTlvStructure(qr: string): TlvParseResult {
 }
 
 /**
- * Removes existing CRC tag (63) if present at the end of the string
- * @returns Object containing base string without CRC, whether CRC was found, and old CRC value
+ * Strips CRC tag (63) from end of QRIS string if present.
+ *
+ * @param qr - QRIS string potentially containing CRC
+ * @returns Base string without CRC, and whether CRC was found
  */
 export function stripExistingCrc(qr: string): CrcStripResult {
   const crcTag = QRIS_TAGS.CRC;
@@ -109,22 +116,35 @@ export function stripExistingCrc(qr: string): CrcStripResult {
 }
 
 /**
- * Finds a specific tag in the TLV structure
+ * Finds specific tag in parsed TLV elements.
+ *
+ * @param elements - Array of parsed TLV elements
+ * @param tag - Tag identifier to find (e.g., "54", "58")
+ * @returns TLV element if found, undefined otherwise
  */
 export function findTag(elements: TlvElement[], tag: string): TlvElement | undefined {
   return elements.find((element) => element.tag === tag);
 }
 
 /**
- * Removes a specific tag from the base string using element position information
+ * Removes tag from QRIS string using element position.
+ *
+ * @param baseString - Original QRIS string
+ * @param element - TLV element to remove
+ * @returns QRIS string with element removed
  */
 export function removeTag(baseString: string, element: TlvElement): string {
   return baseString.slice(0, element.start) + baseString.slice(element.end);
 }
 
 /**
- * Finds the insertion point for tag 54 (Transaction Amount)
- * Priority: before tag 58 (Country Code) > before tag 59 (Merchant Name) > at end
+ * Finds insertion point for tag 54 in QRIS string.
+ *
+ * @param baseString - QRIS string without CRC
+ * @param targetTag - Tag to search for (58 or 59)
+ * @returns Position index, or -1 if not found
+ *
+ * @deprecated Use parsed TLV elements with findTag instead for accuracy
  */
 export function findInsertionPoint(baseString: string, targetTag: string): number {
   const tagIndex = baseString.indexOf(targetTag);

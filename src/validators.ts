@@ -2,24 +2,17 @@ import { QRIS_CONSTRAINTS } from './constants';
 import { ValidationResult } from './types';
 
 /**
- * Validates if a string is a valid QRIS amount
+ * Validates QRIS amount format (integers only, no decimals).
  *
- * IMPORTANT: QRIS Indonesia standard requires INTEGER ONLY (no decimals)
+ * QRIS Indonesia requires integer amounts only - Rupiah has no minor units.
  *
- * Rules based on Bank Indonesia QRIS Standard:
- * - Must contain only digits (0-9)
- * - NO decimal point allowed (Rupiah has no minor units/cents)
- * - Length between 1 and 13 characters
- * - No leading zeros (except exactly "0")
- * - Represents amount in Rupiah (e.g., "10000" = Rp 10.000)
+ * @param amount - Amount string to validate
+ * @returns `true` if valid, `false` otherwise
  *
- * Examples:
- * ✅ "10000" - Rp 10.000
- * ✅ "1" - Rp 1
- * ✅ "9999999999999" - max 13 digits
- * ❌ "10.50" - NO decimals allowed
- * ❌ "10,000" - NO separators
- * ❌ "0100" - NO leading zeros
+ * @example
+ * isAsciiNumericAmount("10000") // true - Rp 10.000
+ * isAsciiNumericAmount("10.50") // false - no decimals allowed
+ * isAsciiNumericAmount("0100")  // false - no leading zeros
  */
 export function isAsciiNumericAmount(amount: string): boolean {
   const { MAX_AMOUNT_LENGTH } = QRIS_CONSTRAINTS;
@@ -43,7 +36,10 @@ export function isAsciiNumericAmount(amount: string): boolean {
 }
 
 /**
- * Validates amount string for QRIS tag 54
+ * Validates amount string for QRIS tag 54 (Transaction Amount).
+ *
+ * @param amount - Amount string (1-13 digits, no decimals)
+ * @returns Validation result with error reason if invalid
  */
 export function validateAmountForTag54(amount: string): ValidationResult {
   if (!isAsciiNumericAmount(amount)) {

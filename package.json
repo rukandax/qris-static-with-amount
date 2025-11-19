@@ -1,11 +1,14 @@
 {
   "name": "qris-static-with-amount",
   "version": "1.0.0",
-  "description": "TypeScript library for inserting transaction amounts into static QRIS (QR Code Indonesian Standard) strings",
+  "description": "TypeScript library for inserting transaction amounts into static QRIS (QR Code Indonesian Standard) strings. Supports GoPay, OVO, Dana, ShopeePay, and all Indonesian e-wallets.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE",
+    "QUICKSTART.md"
   ],
   "scripts": {
     "build": "tsc",
@@ -18,14 +21,46 @@
   },
   "keywords": [
     "qris",
+    "qris-generator",
+    "qris-payment",
+    "qris-indonesia",
     "payment",
+    "payment-gateway",
     "indonesia",
+    "indonesian-payment",
     "qr-code",
+    "qrcode",
     "emv",
-    "tlv"
+    "emvco",
+    "tlv",
+    "gopay",
+    "ovo",
+    "dana",
+    "shopeepay",
+    "linkaja",
+    "e-wallet",
+    "digital-payment",
+    "bank-indonesia",
+    "typescript",
+    "type-safe",
+    "static-qris",
+    "dynamic-qr",
+    "merchant",
+    "pos",
+    "point-of-sale",
+    "checkout",
+    "transaction"
   ],
-  "author": "",
+  "author": "rukandax",
   "license": "MIT",
+  "homepage": "https://github.com/rukandax/qris-static-with-amount#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rukandax/qris-static-with-amount.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rukandax/qris-static-with-amount/issues"
+  },
   "devDependencies": {
     "@jest/environment": "^30.2.0",
     "@types/jest": "^29.5.11",
@@ -43,5 +78,8 @@
   },
   "engines": {
     "node": ">=16"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

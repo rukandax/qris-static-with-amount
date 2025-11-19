@@ -2,7 +2,11 @@ import { QRIS_TAGS } from './constants';
 import { parseTlvStructure, findTag } from './tlv-parser';
 
 /**
- * Builds a TLV string for a given tag and value
+ * Builds TLV-encoded string from tag and value.
+ *
+ * @param tag - 2-character tag identifier
+ * @param value - Value to encode
+ * @returns TLV string: tag + length (2 digits) + value
  */
 export function buildTlv(tag: string, value: string): string {
   const length = value.length.toString().padStart(2, '0');
@@ -10,21 +14,15 @@ export function buildTlv(tag: string, value: string): string {
 }
 
 /**
- * Inserts or replaces tag 54 (Transaction Amount) in the base string
+ * Inserts tag 54 (Transaction Amount) at the correct position in QRIS string.
  *
- * Based on QRIS Indonesia standard, tag order should be:
- * - Tag 52 (Merchant Category Code) - optional
- * - Tag 53 (Transaction Currency) - should exist for proper QRIS
- * - Tag 54 (Transaction Amount) - inserted here
- * - Tag 55-57 (Tip/Fee indicators) - optional
- * - Tag 58 (Country Code) - required
- * - Tag 59 (Merchant Name) - required
+ * @param baseNoCrc - QRIS string without CRC tag
+ * @param amount - Transaction amount value
+ * @returns QRIS string with tag 54 inserted
  *
- * Insertion priority based on parsed TLV elements:
- * 1. Before tag 55/56/57 (if exists)
- * 2. Before tag 58 (Country Code)
- * 3. Before tag 59 (Merchant Name)
- * 4. At the end of the string
+ * @remarks
+ * Insertion follows QRIS Indonesia standard tag order:
+ * Inserts before tag 55/56/57/58/59/60 (whichever appears first), or appends at end.
  */
 export function insertOrReplaceTag54(baseNoCrc: string, amount: string): string {
   const tlv54 = buildTlv(QRIS_TAGS.TRANSACTION_AMOUNT, amount);

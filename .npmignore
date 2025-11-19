@@ -1,0 +1,38 @@
+# Source files (only ship dist/)
+src/
+*.ts
+!*.d.ts
+
+# Tests
+__tests__/
+*.test.ts
+*.spec.ts
+coverage/
+jest.config.js
+jest.setup.ts
+
+# Development
+.github/
+.vscode/
+.idea/
+examples/
+
+# Config files
+.eslintrc.js
+.prettierrc
+tsconfig.json
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.travis.yml
+.circleci/
+
+# Misc
+*.log
+.DS_Store
+node_modules/
+*.tsbuildinfo

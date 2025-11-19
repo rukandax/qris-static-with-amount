@@ -1,6 +1,6 @@
 /**
- * CRC-16/CCITT implementation for QRIS validation
- * Polynomial: 0x1021, Initial value: 0xFFFF
+ * CRC-16/CCITT implementation for QRIS checksum validation.
+ * Uses polynomial 0x1021 with initial value 0xFFFF per EMVCo specification.
  */
 
 const CRC16_POLY = 0x1021;
@@ -8,9 +8,10 @@ const CRC16_INIT = 0xffff;
 const CRC16_OUTPUT_LENGTH = 4;
 
 /**
- * Computes CRC-16/CCITT checksum over ASCII string
+ * Computes CRC-16/CCITT checksum for QRIS string.
+ *
  * @param inputAscii - ASCII string to compute CRC over
- * @returns Uppercase hexadecimal CRC string (4 characters)
+ * @returns 4-character uppercase hexadecimal CRC value
  */
 export function computeCrc16CcittHex(inputAscii: string): string {
   let crc = CRC16_INIT;

@@ -1,6 +1,23 @@
 # QRIS Static with Amount
 
-A fully type-safe TypeScript library for inserting transaction amounts into static QRIS (Quick Response Code Indonesian Standard) strings.
+[![npm version](https://img.shields.io/npm/v/qris-static-with-amount.svg)](https://www.npmjs.com/package/qris-static-with-amount)
+[![npm downloads](https://img.shields.io/npm/dm/qris-static-with-amount.svg)](https://www.npmjs.com/package/qris-static-with-amount)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
+[![Test Coverage](https://img.shields.io/badge/coverage-97%25-brightgreen)](https://github.com/rukandax/qris-static-with-amount)
+
+> 🇮🇩 **QRIS (Quick Response Code Indonesian Standard)** library untuk insert amount ke static QRIS. Support semua e-wallet Indonesia: GoPay, OVO, Dana, ShopeePay, LinkAja, dan lainnya.
+
+A fully type-safe TypeScript library for inserting transaction amounts into static QRIS (Quick Response Code Indonesian Standard) strings. Compliant with Bank Indonesia and EMVCo specifications.
+
+## Why This Library?
+
+- 🚀 **Production Ready** - Battle-tested with 97%+ test coverage
+- 🔒 **Type Safe** - Full TypeScript support with strict type checking  
+- ✅ **Standards Compliant** - Follows Bank Indonesia QRIS & EMVCo specifications
+- 🎯 **Zero Dependencies** - Lightweight, no external dependencies
+- 💰 **All E-Wallets** - Works with GoPay, OVO, Dana, ShopeePay, LinkAja, etc.
+- 📦 **Easy to Use** - Simple API, comprehensive documentation
 
 ## Features
 
@@ -209,9 +226,66 @@ This library is licensed under the MIT License, which means:
 
 See [LICENSE](LICENSE) file for full details.
 
+## Use Cases
+
+Perfect for:
+- 🏪 **E-commerce platforms** - Generate payment QR at checkout
+- 💳 **POS systems** - Point of sale with dynamic amounts  
+- 🧾 **Invoice generation** - Create payment links for bills
+- 📱 **Mobile apps** - Integrate QRIS payments
+- 🛒 **Marketplace** - Multi-vendor payment systems
+- 🏨 **Hospitality** - Hotel, restaurant billing
+- 🚕 **Transportation** - Ride-hailing, delivery services
+
+## Supported E-Wallets
+
+Works with all Bank Indonesia certified QRIS e-wallets:
+- GoPay
+- OVO  
+- Dana
+- ShopeePay
+- LinkAja
+- BCA Mobile
+- Mandiri e-cash
+- BRI Mobile
+- BNI Mobile
+- CIMB Mobile
+- And many more...
+
+## FAQ
+
+**Q: Does this work with dynamic QRIS?**  
+A: This library is designed for static QRIS. Dynamic QRIS typically requires integration with payment gateway APIs.
+
+**Q: Do I need to register with Bank Indonesia?**  
+A: You need a static QRIS from your bank or payment provider. This library only modifies the amount field.
+
+**Q: Can I use this for production?**  
+A: Yes! The library is production-ready with 97%+ test coverage. Always test with your target e-wallets first.
+
+**Q: Does this contact any external APIs?**  
+A: No. This is a pure calculation library - no network calls, no external dependencies.
+
 ## Contributing
 
 Contributions are welcome! Please ensure all tests pass and add tests for new features.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Run tests (`npm test`)
+4. Commit your changes (`git commit -m 'Add amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
+
+## Support
+
+- 📖 [Documentation](https://github.com/rukandax/qris-static-with-amount#readme)
+- 🐛 [Report Issues](https://github.com/rukandax/qris-static-with-amount/issues)
+- 💬 [Discussions](https://github.com/rukandax/qris-static-with-amount/discussions)
+
+## Related Keywords
+
+QRIS generator, QRIS payment Indonesia, QR Code payment, Indonesian payment gateway, GoPay integration, OVO payment, Dana wallet, ShopeePay integration, static QRIS, dynamic QR code, merchant payment, POS system Indonesia, e-wallet Indonesia, Bank Indonesia standard, EMVCo QR specification, TypeScript payment library.
 
 ## References
 

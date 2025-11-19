@@ -1,6 +1,8 @@
 /**
- * QRIS Tag Constants
- * Reference: EMVCo QR Code Specification & Bank Indonesia QRIS Standard
+ * QRIS tag identifiers per EMVCo QR Code and Bank Indonesia specifications.
+ *
+ * @see {@link https://www.emvco.com/emv-technologies/qrcodes/ | EMVCo QR Code Specification}
+ * @see {@link https://www.bi.go.id/qris | QRIS Standard - Bank Indonesia}
  */
 
 export const QRIS_TAGS = {
@@ -17,6 +19,14 @@ export const QRIS_TAGS = {
   CRC: '63',
 } as const;
 
+/**
+ * QRIS validation constraints and format requirements.
+ *
+ * @remarks
+ * - Indonesian Rupiah has no minor units (no cents/sen)
+ * - Amounts must be integers: "10000" = Rp 10.000
+ * - MAX_DECIMAL_PLACES is 0 per QRIS Indonesia standard
+ */
 export const QRIS_CONSTRAINTS = {
   // QRIS Indonesia: Amount should be integer only (no decimals)
   // Format: Plain numeric string representing the value in major currency units

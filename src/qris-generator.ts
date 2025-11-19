@@ -1,19 +1,13 @@
 /**
- * generate_qris_with_amount.ts
+ * QRIS Generator - Inserts transaction amounts into static QRIS strings.
  *
- * Main module for generating QRIS strings with transaction amounts
+ * @module qris-generator
  *
- * Input:  Original QR string (EMV BER-TLV style)
- * Output: New QR string with tag 54 (Transaction Amount) inserted/updated and CRC (tag 63) recalculated
+ * @remarks
+ * This module handles TLV parsing, amount insertion, and CRC recalculation
+ * per EMVCo QR Code and QRIS Indonesia specifications.
  *
- * Features:
- * - Validates basic TLV well-formedness (tags 2 chars, length 2 chars, length numeric)
- * - Ensures final CRC tag (63) length 04 exists or will be created
- * - Validates amount: ASCII numeric with optional '.' and max length 13 chars
- * - Fully type-safe with comprehensive error handling
- *
- * Note: Does not contact banks; wallet behavior varies.
- * Always test with target wallets for production use.
+ * Does not communicate with banks - always test with target e-wallets.
  */
 
 import { QRIS_TAGS, QRIS_CONSTRAINTS } from './constants';
@@ -24,19 +18,19 @@ import { parseTlvStructure, stripExistingCrc, findTag, removeTag } from './tlv-p
 import { insertOrReplaceTag54 } from './tlv-builder';
 
 /**
- * Inserts or updates transaction amount in a QRIS string
+ * Inserts or updates transaction amount in QRIS string.
  *
- * @param originalQr - Original QRIS string in TLV format
- * @param amount - Transaction amount as string (e.g., "10000" or "10000.50")
- * @returns Result object with success status and payload or error reason
+ * @param originalQr - Original QRIS string (TLV format)
+ * @param amount - Transaction amount (integer string, e.g., "10000" for Rp 10.000)
+ * @returns Success with new QRIS payload, or error with reason
  *
  * @example
- * ```typescript
- * const result = insertAmountIntoQris(originalQris, "50000");
+ * ```ts
+ * const result = insertAmountIntoQris(qris, "50000");
  * if (result.ok) {
- *   console.log("New QRIS:", result.payload);
+ *   displayQR(result.payload);
  * } else {
- *   console.error("Error:", result.reason);
+ *   console.error(result.reason);
  * }
  * ```
  */
